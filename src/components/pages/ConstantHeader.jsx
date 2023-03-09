@@ -19,15 +19,15 @@ class ConstantHeader extends React.Component {
 					<Navbar.Brand href='#home'>Easy-RPG</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav'>
-					<Nav className="Nav">
-					<Nav.Link href='#home'>Home</Nav.Link>
-					<Nav.Link href='#about'>About Us</Nav.Link>
-					<NavDropdown title='Account' id='basic-nav-dropdown'>
-					<NavDropdown.Item>
-						{this.props.auth0.isAuthenticated && <LogoutButton />}
-						</NavDropdown.Item>
-					</NavDropdown>
-					</Nav>
+						<Nav className='Nav'>
+							<Nav.Link href='#home'>Home</Nav.Link>
+							<Nav.Link href='#about'>About Us</Nav.Link>
+							<NavDropdown title='Account' id='basic-nav-dropdown'>
+								<NavDropdown.Item>
+									<LogoutButton />
+								</NavDropdown.Item>
+							</NavDropdown>
+						</Nav>
 					</Navbar.Collapse>
 				</Container>
 			</Navbar>

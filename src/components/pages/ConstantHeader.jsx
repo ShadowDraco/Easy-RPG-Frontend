@@ -24,7 +24,7 @@ class ConstantHeader extends React.Component {
 							<Nav.Link href='#about'>About Us</Nav.Link>
 							<NavDropdown title='Account' id='basic-nav-dropdown'>
 								<NavDropdown.Item>
-									{this.props.auth0.isAuthenticated && <LogoutButton />}
+									<LogoutButton />
 								</NavDropdown.Item>
 							</NavDropdown>
 						</Nav>

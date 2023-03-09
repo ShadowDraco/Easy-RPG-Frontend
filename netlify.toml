@@ -1,4 +1,4 @@
 [[redirects]]
   from = "/callback"
-  to = "https://easy-rpg.netlify.app/game"
+  to = "https://easy-rpg.netlify.app/"
   status = 200

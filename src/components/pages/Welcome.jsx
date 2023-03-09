@@ -15,7 +15,11 @@ class Welcome extends React.Component {
 		return (
 			<Container className='my-5'>
 				<h1 className='my-5'>Welcome</h1>
-				{!this.props.auth0.isAuthenticated && <LoginButton />}
+				{!this.props.auth0.isAuthenticated ? (
+					<LoginButton />
+				) : (
+					<Button href='/game'>To the dungeon!</Button>
+				)}
 			</Container>
 		)
 	}

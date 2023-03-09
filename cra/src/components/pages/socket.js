@@ -1,7 +1,5 @@
 import io from 'socket.io-client'
 
-const URL = 'http://localhost:3000'
-
 const socket = io('https://easy-rpg-backend.herokuapp.com/').connect()
 
 // create a socket connection function

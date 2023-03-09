@@ -10,8 +10,8 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<ChakraProvider>
 			<Auth0Provider
-				domain={process.env.REACT_APP_AUTH_DOMAIN}
-				clientId={process.env.REACT_APP_AUTH_CLIENT_ID}
+				domain='dev-iaagx3vzh22w84ou.us.auth0.com'
+				clientId='Ad59Ar27j64zPw2jD6FMPLzlWw2z7bFR'
 				authorizationParams={{
 					redirect_uri: `${window.location.origin}/game`,
 					//audience: `${import.meta.env.SERVER_URL}`,

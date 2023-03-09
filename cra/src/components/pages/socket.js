@@ -6,8 +6,6 @@ const socket = io(URL, {
 	autoConnect: false,
 })
 
-var mySocketId
-
 // create a socket connection function
 
 socket.on('connect', () => console.log('connected with to socket'))

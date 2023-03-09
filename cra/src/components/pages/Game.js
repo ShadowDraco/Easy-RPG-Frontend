@@ -13,7 +13,7 @@ import PartyHud from '../gameElements/partyStuff/PartyHud'
 import socket from './socket'
 import Button from 'react-bootstrap/esm/Button'
 import Modal from 'react-bootstrap/Modal'
-import Card from 'react-bootstrap/Card'
+
 import NotAuthenticated from '../auth0/NotAuthenticated'
 
 class Game extends React.Component {
@@ -63,10 +63,10 @@ class Game extends React.Component {
 			const config = {
 				headers: { Authorization: `Bearer ${jwt}` },
 				method: 'get',
-				baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+				baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 				url: '/player/get',
 			}
-			console.log(`${process.env.REACT_APP_SERVER_URL}`)
+			console.log(`https://easy-rpg-backend.herokuapp.com/`)
 			const playerAndRoom = await axios(config)
 			console.log(playerAndRoom.data, 'component mounted')
 			this.setState({
@@ -88,7 +88,7 @@ class Game extends React.Component {
 			headers: { Authorization: `Bearer ${jwt}` },
 			method: 'put',
 			data: { oldIndex: indexOfOldRoom, index: indexOfChosenRoom },
-			baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 			url: '/player/move',
 		}
 
@@ -159,7 +159,7 @@ class Game extends React.Component {
 			headers: { Authorization: `Bearer ${jwt}` },
 			method: 'put',
 			data: { amountOfGold: treasure.gold },
-			baseURL: `${process.env.REACT_APP_SERVER_URL}`,
+			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 			url: '/player/add-gold',
 		}
 

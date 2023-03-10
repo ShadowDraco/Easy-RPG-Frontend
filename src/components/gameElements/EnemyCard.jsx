@@ -1,4 +1,5 @@
 import React from 'react'
+
 import Card from 'react-bootstrap/Card'
 import ProgressBar from 'react-bootstrap/ProgressBar'
 
@@ -13,7 +14,7 @@ class EnemyCard extends React.Component {
 			name: this.props.enemyInfo.name,
 			class: this.props.enemyInfo.class,
 			itemsDropped: ['health potion', 'mana potion', '3gold'],
-			variant: '',
+			bgcolor: 'rgba(75, 32, 22, 100%)',
 		}
 	}
 
@@ -23,7 +24,7 @@ class EnemyCard extends React.Component {
 		} else {
 			if (this.state.currentHP - this.props.handleDealDamage() < 1) {
 				this.setState({
-					variant: 'danger',
+					bgcolor: 'rgba(75, 32, 22, 40%)',
 					currentHP: 0,
 					isDead: true,
 				})
@@ -33,22 +34,22 @@ class EnemyCard extends React.Component {
 				this.setState({
 					currentHP: this.state.currentHP - this.props.handleDealDamage(),
 				})
+				this.props.doDamageToPlayer()
 			}
 		}
 
-		// trigger damage player from here??
+		// let player = document.getElementById('player_0')
+		// console.log(ReactDOM.findDOMNode(player)).test;
 	}
 
 	render() {
 		return (
 			<>
 				<Card
-					className='enemy'
-					key='enemy_0'
-					id='enemy_0'
+					className={`enemy ${this.state.currentHP < 1 ? 'dead' : 'alive'}`}
+					id={this.props.id}
 					onClick={() => this.takeDamage()}
-					style={{ cursor: 'pointer' }}
-					bg={this.state.variant.toLowerCase()}
+					style={{ cursor: 'pointer', backgroundColor: this.state.bgcolor }}
 				>
 					<Card.Header>{this.state.name}</Card.Header>
 					<Card.Body>
@@ -58,6 +59,9 @@ class EnemyCard extends React.Component {
 							max={this.state.maxHP}
 							now={this.state.currentHP}
 							variant='danger'
+							onChange={() => {
+								console.log('test')
+							}}
 						/>
 					</Card.Body>
 				</Card>

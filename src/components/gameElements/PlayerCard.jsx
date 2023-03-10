@@ -11,9 +11,25 @@ import { withAuth0 } from '@auth0/auth0-react'
 class PlayerCard extends React.Component {
 	constructor(props) {
 		super(props)
+
+		this.playerRef = React.createRef()
+
 		this.state = {
-			showInventory: false,
+			// showInventory: false,
 			showEditCharacter: false,
+			maxHealth: 100,
+			inventory: [
+				{
+					name: 'Potion of Placeholding',
+					description: 'This potion does nothing but take up inventory space',
+					amount: 99,
+				},
+				{
+					name: 'Health Potion',
+					description: 'Heals the player for 10 - 30 HP',
+					amount: this.props.authorizedPlayer.stats.potions,
+				},
+			],
 		}
 	}
 
@@ -21,12 +37,12 @@ class PlayerCard extends React.Component {
 
 	handleInputChange = () => {}
 
-	// toggles hide/show of inventory
-	handleShowInventory = () => {
-		this.setState({
-			showInventory: !this.state.showInventory,
-		})
-	}
+	// // toggles hide/show of inventory
+	// handleShowInventory = () => {
+	// 	this.setState({
+	// 		showInventory: !this.state.showInventory,
+	// 	})
+	// }
 
 	// toggles hide/show of edit character modal
 	handleEditCharacter = () => {
@@ -35,10 +51,23 @@ class PlayerCard extends React.Component {
 		})
 	}
 
-	// submits new player character information
+	handleHealPlayer = itemIdx => {
+		let newInventory = this.state.inventory
+		newInventory[itemIdx].amount--
+
+		this.setState({
+			inventory: newInventory,
+		})
+
+		this.props.healPlayer()
+		this.props.handleShowInventory()
+	}
+
+	// submits new player information
+
 	handleSubmit = async event => {
 		event.preventDefault()
-		console.log(event.target.character_name.value)
+
 		const res = await this.props.auth0.getIdTokenClaims()
 		const jwt = res.__raw
 		const config = {
@@ -52,9 +81,14 @@ class PlayerCard extends React.Component {
 			url: '/player/change-info',
 		}
 		axios(config).then(response => {
-			console.log(response)
 			this.props.updateAuthorizedPlayer(response.data)
 			this.handleEditCharacter()
+		})
+	}
+
+	componentDidMount() {
+		this.setState({
+			maxHealth: 100,
 		})
 	}
 
@@ -66,21 +100,38 @@ class PlayerCard extends React.Component {
 					className='player'
 					onClick={this.props.updateMapInfo}
 				>
-					<Card.Header>
-						{this.props.authorizedPlayer.username}{' '}
-						<Button onClick={this.handleEditCharacter}>Edit</Button>
+					<Card.Header
+						style={{ display: 'flex', justifyContent: 'space-between' }}
+					>
+						<div style={{ paddingRight: '5px' }}>
+							{this.props.authorizedPlayer.username}{' '}
+						</div>
+						<Button size='sm' onClick={this.handleEditCharacter}>
+							Edit
+						</Button>
 					</Card.Header>
+
 					<Card.Body>
 						<p>Class: {this.props.authorizedPlayer.class}</p>
+						<p>
+							Highest Gold:{' '}
+							<span className='gold'>
+								{this.props.authorizedPlayer.stats.gold} /
+								{this.props.highestGold}
+							</span>
+						</p>
 
 						{/* calculate health percentage out of 100 to display accurate health bar */}
 						<ProgressBar
-							now={(this.props.authorizedPlayer.stats.health / 150) * 100}
+							now={this.props.authorizedPlayer.stats.health}
+							max={this.state.maxHealth}
+							label={`${this.props.authorizedPlayer.stats.health} / ${this.state.maxHealth}`}
 							variant='success'
 						/>
 					</Card.Body>
 				</Card>
 
+				{/* inventory modal  */}
 				<Modal
 					show={this.props.showInventory}
 					onHide={this.props.handleShowInventory}
@@ -90,23 +141,32 @@ class PlayerCard extends React.Component {
 					<Modal.Header>Inventory</Modal.Header>
 					<Modal.Body>
 						<Accordion>
-							<Accordion.Item eventKey='0'>
-								<Accordion.Header>Potion of Placeholding</Accordion.Header>
-								<Accordion.Body>
-									This potion does absolutely nothing but act as a placeholder
-									for other items
-								</Accordion.Body>
-							</Accordion.Item>
-							<Accordion.Item eventKey='1'>
-								<Accordion.Header>Health Potion</Accordion.Header>
-								<Accordion.Body>
-									This is where my health potion would go... IF I HAD ONE!
-								</Accordion.Body>
-							</Accordion.Item>
+							{this.state.inventory.map((item, idx) => (
+								<Accordion.Item eventKey={idx} key={`${item}_${idx}`}>
+									<Accordion.Header>
+										{item.name} x{item.amount}
+									</Accordion.Header>
+									<Accordion.Body>
+										{item.name === 'Health Potion' ? (
+											<>
+												<Button onClick={() => this.handleHealPlayer(idx)}>
+													Use
+												</Button>{' '}
+												{item.description}
+											</>
+										) : (
+											<>
+												<Button>Use</Button> {item.description}
+											</>
+										)}
+									</Accordion.Body>
+								</Accordion.Item>
+							))}
 						</Accordion>
 					</Modal.Body>
 				</Modal>
 
+				{/* edit player character modal */}
 				<Modal
 					show={this.state.showEditCharacter}
 					onHide={this.handleEditCharacter}
@@ -120,12 +180,12 @@ class PlayerCard extends React.Component {
 								placeholder='Character Name'
 							></Form.Control>
 							<Form.Select type='option' id='character_class'>
-								<option value='archer'>Archer</option>
-								<option value='barbarian'>Barbarian</option>
-								<option value='druid'>Druid</option>
-								<option value='rouge'>Rouge</option>
-								<option value='warrior'>Warrior</option>
-								<option value='wizard'>Wizard</option>
+								<option value='Astrological Archer'>Astrological Archer</option>
+								<option value='Galactic Barbarian'>Galactic Barbarian</option>
+								<option value='Interstellar Druid'>Interstellar Druid</option>
+								<option value='Cosmic Rouge'>Cosmic Rouge</option>
+								<option value='Solar Warrior'>Solar Warrior</option>
+								<option value='Space Wizard'>Space Wizard</option>
 							</Form.Select>
 							<Button type='submit'>Save</Button>
 						</Form>

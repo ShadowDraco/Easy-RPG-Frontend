@@ -14,11 +14,11 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 				clientId={import.meta.env.VITE_AUTH_CLIENT_ID}
 				authorizationParams={{
 					redirect_uri: `${window.location.origin}/`,
-					//audience: `${import.meta.env.VITE_SERVER_URL}`,
+					//audience: 'https://easy-rpg-backend.herokuapp.com/',
 					//scope: 'read:current_user update:current_user_metadata',
 				}}
 			>
-				<App />
+				<App style={{ backgroundImage: '/public/MSL.jpg' }} />
 			</Auth0Provider>
 		</ChakraProvider>
 	</React.StrictMode>

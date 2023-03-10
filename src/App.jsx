@@ -14,8 +14,8 @@ import Container from 'react-bootstrap/Container'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NotAuthenticated from './components/auth0/NotAuthenticated'
 
-const imageUrlOne = 'Easy-RPG-Frontend/msl.jpg'
-const imageUrlTwo = 'Easy-RPG-Frontend/msl2.png'
+const imageUrlOne = '/msl.jpg'
+const imageUrlTwo = '/msl2.png'
 
 const images = [imageUrlOne, imageUrlTwo]
 const filters = ['normal', 'color-dodge']
@@ -62,14 +62,10 @@ class App extends React.Component {
 						updateImage={this.updateImage}
 					/>
 					<Routes>
+						<Route exact path='/' element={<Welcome />}></Route>
 						<Route
 							exact
-							path='/Easy-RPG-Frontend/'
-							element={<Welcome />}
-						></Route>
-						<Route
-							exact
-							path='/Easy-RPG-Frontend/game'
+							path='/game'
 							element={
 								this.props.auth0.isAuthenticated ? (
 									<Game />

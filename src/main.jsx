@@ -10,10 +10,10 @@ ReactDOM.createRoot(document.getElementById('root')).render(
 	<React.StrictMode>
 		<ChakraProvider>
 			<Auth0Provider
-				domain='dev-iaagx3vzh22w84ou.us.auth0.com'
-				clientId='Ad59Ar27j64zPw2jD6FMPLzlWw2z7bFR'
+				domain={import.meta.env.VITE_AUTH_DOMAIN}
+				clientId={import.meta.env.VITE_AUTH_CLIENT_ID}
 				authorizationParams={{
-					redirect_uri: `${window.location.origin}/Easy-RPG-Frontend/`,
+					redirect_uri: `${window.location.origin}/`,
 					//audience: 'https://easy-rpg-backend.herokuapp.com/',
 					//scope: 'read:current_user update:current_user_metadata',
 				}}

@@ -11,7 +11,7 @@ class GameOver extends React.Component {
 		return (
 			<Container>
 				<h1>GAME OVER</h1>
-				<Button href='/Easy-RPG-Frontend/' onClick={this.props.resetPlayer}>
+				<Button href='/' onClick={this.props.resetPlayer}>
 					Begin anew...
 				</Button>
 			</Container>

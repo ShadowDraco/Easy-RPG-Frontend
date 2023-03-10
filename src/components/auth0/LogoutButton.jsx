@@ -8,11 +8,7 @@ const LogoutButton = () => {
 	return (
 		<Button
 			onClick={() =>
-				logout({
-					logoutParams: {
-						returnTo: `${window.location.origin}/Easy-RPG-Frontend/`,
-					},
-				})
+				logout({ logoutParams: { returnTo: window.location.origin } })
 			}
 		>
 			Log Out

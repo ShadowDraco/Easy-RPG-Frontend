@@ -90,7 +90,7 @@ class Game extends React.Component {
 				headers: { Authorization: `Bearer ${jwt}` },
 				method: 'put',
 				data: { oldPlayer: this.state.authorizedPlayer },
-				baseURL: `https://easy-rpg-backend.herokuapp.com/`,
+				baseURL: `${import.meta.env.VITE_SERVER_URL}`,
 				url: '/player/reset-player',
 			}
 
@@ -113,7 +113,7 @@ class Game extends React.Component {
 			headers: { Authorization: `Bearer ${jwt}` },
 			method: 'put',
 			data: { oldIndex: indexOfOldRoom, index: indexOfChosenRoom },
-			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
+			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
 			url: '/player/move',
 		}
 
@@ -188,7 +188,7 @@ class Game extends React.Component {
 				amountOfPotions: this.state.authorizedPlayer.stats.potions,
 				newPlayerHealth: this.state.authorizedPlayer.stats.health,
 			},
-			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
+			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
 			url: '/player/add-gold',
 		}
 
@@ -246,7 +246,7 @@ class Game extends React.Component {
 			data: {
 				newPlayerInfo: newPlayerInfo,
 			},
-			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
+			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
 			url: '/player/sync-player',
 		}
 
@@ -440,7 +440,7 @@ class Game extends React.Component {
 														{/* <PartyPlayerCard /> */}
 														{/* <PartyPlayerCard /> */}
 													</>
-												) : null //if no authorized player, dont render any player cards
+												) : null //if no authorized player, don't render any player cards
 											}
 										</div>
 

@@ -19,7 +19,7 @@ class Welcome extends React.Component {
 				{!this.props.auth0.isAuthenticated ? (
 					<LoginButton />
 				) : (
-					<Button href='/game'>To the dungeon!</Button>
+					<Button href='/Easy-RPG-Frontend/game'>To the dungeon!</Button>
 				)}
 			</Container>
 		)

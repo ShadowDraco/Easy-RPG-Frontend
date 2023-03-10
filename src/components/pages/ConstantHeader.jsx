@@ -17,12 +17,12 @@ class ConstantHeader extends React.Component {
 		return (
 			<Navbar className='Navbar p-3' bg='dark' variant='dark'>
 				<Container className='my-5 p-2'>
-					<Navbar.Brand href='/'>Easy-RPG</Navbar.Brand>
+					<Navbar.Brand href='/Easy-RPG-Frontend/'>Easy-RPG</Navbar.Brand>
 					<Navbar.Toggle aria-controls='basic-navbar-nav' />
 					<Navbar.Collapse id='basic-navbar-nav p-3'>
 						<Nav className='Nav p-3'>
-							<Nav.Link href='/'>Home</Nav.Link>
-							<Nav.Link href='/about'>About Us</Nav.Link>
+							<Nav.Link href='/Easy-RPG-Frontend/'>Home</Nav.Link>
+							<Nav.Link href='/Easy-RPG-Frontend/about'>About Us</Nav.Link>
 							<NavDropdown title='Account' id='basic-nav-dropdown'>
 								<NavDropdown.Item>
 									<Button onClick={this.props.updateImage}>Change Theme</Button>

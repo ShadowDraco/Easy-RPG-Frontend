@@ -90,7 +90,7 @@ class Game extends React.Component {
 				headers: { Authorization: `Bearer ${jwt}` },
 				method: 'put',
 				data: { oldPlayer: this.state.authorizedPlayer },
-				baseURL: `${import.meta.env.VITE_SERVER_URL}`,
+				baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 				url: '/player/reset-player',
 			}
 
@@ -113,7 +113,7 @@ class Game extends React.Component {
 			headers: { Authorization: `Bearer ${jwt}` },
 			method: 'put',
 			data: { oldIndex: indexOfOldRoom, index: indexOfChosenRoom },
-			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
+			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 			url: '/player/move',
 		}
 
@@ -188,7 +188,7 @@ class Game extends React.Component {
 				amountOfPotions: this.state.authorizedPlayer.stats.potions,
 				newPlayerHealth: this.state.authorizedPlayer.stats.health,
 			},
-			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
+			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 			url: '/player/add-gold',
 		}
 
@@ -246,7 +246,7 @@ class Game extends React.Component {
 			data: {
 				newPlayerInfo: newPlayerInfo,
 			},
-			baseURL: `${import.meta.env.VITE_SERVER_URL}`,
+			baseURL: `https://easy-rpg-backend.herokuapp.com/`,
 			url: '/player/sync-player',
 		}
 

@@ -17,6 +17,7 @@ import NotAuthenticated from './components/auth0/NotAuthenticated'
 const imageUrlOne = '/public/msl.jpg'
 const imageUrlTwo = '/public/msl2.png'
 
+
 const images = [imageUrlOne, imageUrlTwo]
 const filters = ['normal', 'color-dodge']
 class App extends React.Component {
@@ -62,7 +63,11 @@ class App extends React.Component {
 						updateImage={this.updateImage}
 					/>
 					<Routes>
-						<Route exact path='/' element={<Welcome />}></Route>
+						<Route
+							exact
+							path='/'
+							element={<Welcome />}
+						></Route>
 						<Route
 							exact
 							path='/game'

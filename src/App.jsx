@@ -62,10 +62,14 @@ class App extends React.Component {
 						updateImage={this.updateImage}
 					/>
 					<Routes>
-						<Route exact path='/' element={<Welcome />}></Route>
 						<Route
 							exact
-							path='/game'
+							path='/Easy-RPG-Frontend/'
+							element={<Welcome />}
+						></Route>
+						<Route
+							exact
+							path='/Easy-RPG-Frontend/game'
 							element={
 								this.props.auth0.isAuthenticated ? (
 									<Game />

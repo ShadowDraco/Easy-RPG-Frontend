@@ -14,8 +14,8 @@ import Container from 'react-bootstrap/Container'
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom'
 import NotAuthenticated from './components/auth0/NotAuthenticated'
 
-const imageUrlOne = '/msl.jpg'
-const imageUrlTwo = '/msl2.png'
+const imageUrlOne = 'Easy-RPG-Frontend/msl.jpg'
+const imageUrlTwo = 'Easy-RPG-Frontend/msl2.png'
 
 const images = [imageUrlOne, imageUrlTwo]
 const filters = ['normal', 'color-dodge']
